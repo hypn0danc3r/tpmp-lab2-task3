@@ -17,9 +17,9 @@ jobs:
       - name: Build with Make
         run: make
 
-      - name: Run the program (optional)
+      - name: Test program (auto-input)
         run: |
-          ./bin/lab2-task3 5 <<EOF
+          cat > test_input.txt << 'EOF'
           Ivanov I.I.
           123456
           2000 5 10
@@ -29,5 +29,27 @@ jobs:
           Sidorov S.S.
           111222
           2001 5 15
-          ...
+          Kuznetsov K.K.
+          222333
+          1995 5 20
+          Smirnov S.S.
+          333444
+          1998 5 25
+          Popov P.P.
+          444555
+          2002 6 10
+          Sokolov S.S.
+          555666
+          1997 7 15
+          Volkov V.V.
+          666777
+          2003 5 30
+          Zaitsev Z.Z.
+          777888
+          1996 8 20
+          5
           EOF
+          
+          cat test_input.txt | ./bin/lab2-task3 5
+          
+          echo "Program executed successfully!"
