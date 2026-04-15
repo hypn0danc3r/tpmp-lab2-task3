@@ -1,0 +1,33 @@
+name: C Build
+
+on:
+  push:
+    branches: [ main, master, development ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build with Make
+        run: make
+
+      - name: Run the program (optional)
+        run: |
+          ./bin/lab2-task3 5 <<EOF
+          Ivanov I.I.
+          123456
+          2000 5 10
+          Petrov P.P.
+          654321
+          1999 3 20
+          Sidorov S.S.
+          111222
+          2001 5 15
+          ...
+          EOF
